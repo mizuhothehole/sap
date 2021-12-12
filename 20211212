@@ -1,0 +1,31 @@
+*&---------------------------------------------------------------------*
+*& Report ZTEST_1213QC
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZTEST_1213QC.
+* inner table structure
+TYPES: BEGIN OF TYP_TBL,
+         PERIOD TYPE ZSTUSEA-PERIOD,
+         ID     TYPE ZSTUSEA-ID,
+         SALARY TYPE ZSTUSEA-SALARY,
+       END OF TYP_TBL.
+
+* inner table data
+DATA TBL_ZSTUSEA TYPE STANDARD TABLE OF ZSTUSEA.
+* inner table workspace
+DATA STR_ZSTUSEA TYPE ZSTUSEA.
+
+DATA TBL_ZSUSEA TYPE ZSTUSEA.
+SELECT *
+  FROM ZSTUSEA
+  INTO TABLE TBL_ZSTUSEA.
+IF SY-SUBRC = 0.
+  WRITE 'OK'.
+ENDIF.
+
+LOOP AT TBL_ZSTUSEA INTO STR_ZSTUSEA.
+write: / STR_ZSTUSEA-PERIOD,
+        STR_ZSTUSEA-ID,
+        STR_ZSTUSEA-SALARY.
+ENDLOOP.
